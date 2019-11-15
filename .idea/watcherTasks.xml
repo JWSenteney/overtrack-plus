@@ -76,7 +76,7 @@
       <option name="outputFromStdout" value="false" />
       <option name="program" value="$ProjectFileDir$/node_modules/.bin/prettier" />
       <option name="runOnExternalChanges" value="true" />
-      <option name="scopeName" value="module files" />
+      <option name="scopeName" value="root project files" />
       <option name="trackOnlyRoot" value="false" />
       <option name="workingDir" value="$ModuleFileDir$" />
       <envs />

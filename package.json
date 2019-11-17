@@ -1,0 +1,11 @@
+{
+  "name": "overtrack-plus-desktop",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "https://github.com/JWSenteney/overtrack-plus-desktop.git",
+  "author": "Jacob Senteney <jwsenteney@gmail.com>",
+  "license": "MIT",
+  "private": true,
+  "dependencies": {},
+  "devDependencies": {}
+}

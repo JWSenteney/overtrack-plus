@@ -7,12 +7,15 @@
   "license": "MIT",
   "private": true,
   "scripts": {
+    "start": "electron -r ./babel-injector.js .",
     "lint": "eslint --fix"
   },
   "dependencies": {},
   "devDependencies": {
+    "@babel/core": "^7.7.2",
     "@babel/preset-env": "^7.7.1",
     "@babel/register": "^7.7.0",
+    "electron": "^7.1.2",
     "eslint": "^6.6.0",
     "eslint-config-prettier": "^6.6.0",
     "eslint-plugin-json": "^2.0.1",

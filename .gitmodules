@@ -1,9 +1,0 @@
-[submodule "desktop"]
-	path = desktop
-	url = https://github.com/JWSenteney/overtrack-plus-desktop.git
-[submodule "server"]
-	path = server
-	url = https://github.com/JWSenteney/overtrack-plus-server.git
-[submodule "web"]
-	path = web
-	url = https://github.com/JWSenteney/overtrack-plus-web.git

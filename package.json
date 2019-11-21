@@ -5,7 +5,9 @@
   "repository": "git@github.com:JWSenteney/overtrack-plus.git",
   "author": "Jacob Senteney <jwsenteney@gmail.com>",
   "license": "MIT",
-  "scripts": {},
+  "scripts": {
+    "setup-idea": "sh initialize.sh"
+  },
   "devDependencies": {
     "prettier": "^1.19.1"
   }

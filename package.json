@@ -5,9 +5,7 @@
   "repository": "git@github.com:JWSenteney/overtrack-plus.git",
   "author": "Jacob Senteney <jwsenteney@gmail.com>",
   "license": "MIT",
-  "scripts": {
-    "start": "electron -r ./babel-injector.js ."
-  },
+  "scripts": {},
   "devDependencies": {
     "prettier": "^1.19.1"
   }

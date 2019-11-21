@@ -1,3 +1,6 @@
+desktop/
+server/
+web/
 
 # Created by https://www.gitignore.io/api/Node,JetBrains
 # Edit at https://www.gitignore.io/?templates=Node,JetBrains

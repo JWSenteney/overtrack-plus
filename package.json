@@ -7,7 +7,7 @@
   "license": "MIT",
   "scripts": {
     "setup-idea": "sh initialize.sh",
-    "electron": "concurrently \"yarn --cwd web start\" \"yarn --cwd desktop wait-react\""
+    "electron": "export BROWSER=none && concurrently \"yarn --cwd web start\" \"yarn --cwd desktop wait-react\""
   },
   "devDependencies": {
     "concurrently": "^5.0.0",

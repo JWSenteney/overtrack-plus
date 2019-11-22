@@ -6,9 +6,11 @@
   "author": "Jacob Senteney <jwsenteney@gmail.com>",
   "license": "MIT",
   "scripts": {
-    "setup-idea": "sh initialize.sh"
+    "setup-idea": "sh initialize.sh",
+    "electron": "concurrently \"yarn --cwd web start\" \"yarn --cwd desktop wait-react\""
   },
   "devDependencies": {
+    "concurrently": "^5.0.0",
     "prettier": "^1.19.1"
   }
 }

@@ -3,6 +3,7 @@ import { Route, BrowserRouter as Router, Switch } from "react-router-dom";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
 import { Translate, withLocalize } from "react-localize-redux";
+import { CssBaseline, Typography, SvgIcon } from "@material-ui/core";
 
 import logo from "../assets/logo.svg";
 import { testApi } from "../actions";
@@ -10,10 +11,14 @@ import { languages, translations, translationOptions } from "../translations";
 
 const Landing = () => (
   <div>
-    <Translate id="overtrack_plus" />
-    <svg height="50" width="50">
-      <use xlinkHref={`${logo}#logo`} />
-    </svg>
+    <Typography variant="h4">
+      <Translate id="overtrack_plus" />
+    </Typography>
+    <SvgIcon fontSize="large">
+      <svg>
+        <use xlinkHref={`${logo}#logo`} />
+      </svg>
+    </SvgIcon>
   </div>
 );
 
@@ -45,14 +50,17 @@ class App extends Component {
   render = () => {
     return (
       <div className="App">
+        <CssBaseline />
         <Router>
           <Switch>
             <Route path="/" component={Landing} />
           </Switch>
         </Router>
         <div>
-          <Translate id="api_works" />:{" "}
-          <Translate id={this.props.test ? "yes" : "no"} />
+          <Typography variant="body1">
+            <Translate id="api_works" />:{" "}
+            <Translate id={this.props.test ? "yes" : "no"} />
+          </Typography>
         </div>
       </div>
     );

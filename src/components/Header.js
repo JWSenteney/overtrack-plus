@@ -4,7 +4,7 @@ import { withStyles } from "@material-ui/core/styles";
 import { AppBar, Toolbar, SvgIcon, Typography } from "@material-ui/core";
 import { Translate } from "react-localize-redux";
 
-import logo from "../assets/logo.svg";
+import { ReactComponent as Logo } from "../assets/logo.svg";
 
 const styles = theme => ({
   root: { flexGrow: 1 },
@@ -20,9 +20,7 @@ const Header = ({ classes }) => {
       <AppBar position="static">
         <Toolbar>
           <SvgIcon className={classes.logo} fontSize="large">
-            <svg>
-              <use xlinkHref={`${logo}#logo`} />
-            </svg>
+            <Logo />
           </SvgIcon>
           <Typography variant="h6" className={classes.title}>
             <Translate id="overtrack_plus" />

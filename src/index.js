@@ -4,18 +4,22 @@ import { Provider } from "react-redux";
 import { createStore, applyMiddleware } from "redux";
 import reduxThunk from "redux-thunk";
 import { LocalizeProvider } from "react-localize-redux";
+import { ThemeProvider } from "@material-ui/core/styles";
 
 import reducers from "./reducers";
 import App from "./components/App";
 import * as serviceWorker from "./serviceWorker";
+import theme from "./themes/dark";
 
 const store = createStore(reducers, {}, applyMiddleware(reduxThunk));
 
 ReactDOM.render(
   <Provider store={store}>
-    <LocalizeProvider>
-      <App />
-    </LocalizeProvider>
+    <ThemeProvider theme={theme}>
+      <LocalizeProvider>
+        <App />
+      </LocalizeProvider>
+    </ThemeProvider>
   </Provider>,
   document.getElementById("root")
 );

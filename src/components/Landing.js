@@ -23,11 +23,9 @@ class Landing extends Component {
     const { classes } = this.props;
     return (
       <Container maxWidth="md" className={classes.root}>
-        <Typography variant="body1">
-          <div className={classes.apiCheck}>
-            <Translate id="api_works" />:{" "}
-            <Translate id={this.props.test ? "yes" : "no"} />
-          </div>
+        <Typography variant="body1" className={classes.apiCheck}>
+          <Translate id="api_works" />:{" "}
+          <Translate id={this.props.test ? "yes" : "no"} />
         </Typography>
       </Container>
     );

@@ -4,7 +4,7 @@ import { withStyles } from "@material-ui/core/styles";
 import { AppBar, Toolbar, SvgIcon, Typography } from "@material-ui/core";
 import { Translate } from "react-localize-redux";
 
-import { ReactComponent as Logo } from "../assets/logo.svg";
+import Logo from "./Logo";
 
 const styles = theme => ({
   root: { flexGrow: 1 },

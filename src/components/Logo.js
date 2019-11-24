@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { withStyles } from "@material-ui/core/styles";
+import { grey, orange } from "@material-ui/core/colors";
 
 const styles = () => ({
   root: {
@@ -14,10 +15,10 @@ const styles = () => ({
     }
   },
   t: {
-    fill: "#d2691e"
+    fill: orange["500"]
   },
   o: {
-    fill: "#808080"
+    fill: grey["500"]
   }
 });
 

@@ -2,5 +2,7 @@
   "overtrack_plus": "OverTrack+",
   "api_works": "API Works?",
   "yes": "YES!",
-  "no": "NO!"
+  "no": "NO!",
+  "login": "Login",
+  "log_out": "Log Out"
 }

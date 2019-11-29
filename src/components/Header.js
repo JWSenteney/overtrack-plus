@@ -5,10 +5,13 @@ import {
   AppBar,
   Button,
   Link,
+  Menu,
+  MenuItem,
   SvgIcon,
   Toolbar,
   Typography
 } from "@material-ui/core";
+import { ArrowDropDown } from "@material-ui/icons";
 import { Translate } from "react-localize-redux";
 import { connect } from "react-redux";
 
@@ -24,6 +27,10 @@ const styles = theme => ({
 });
 
 class Header extends Component {
+  componentDidMount = () => {
+    this.setState({ anchorEl: null });
+  };
+
   render = () => {
     const { classes } = this.props;
     return (
@@ -46,19 +53,47 @@ class Header extends Component {
   renderAccountControls = () => {
     const { user, logout } = this.props;
 
-    const clickLogout = event => {
-      event.preventDefault();
+    const clickMenu = event => {
+      setAnchorEl(event.currentTarget);
+    };
+
+    const clickLogout = () => {
+      closeMenu();
       logout();
+    };
+
+    const setAnchorEl = element => {
+      this.setState({ anchorEl: element });
+    };
+
+    const closeMenu = () => {
+      setAnchorEl(null);
     };
 
     if (user.battletag) {
       return (
         <div>
-          <Typography>{user.battletag}</Typography> (
-          <Link href="#" color="inherit" onClick={clickLogout}>
-            <Translate id="log_out" />
-          </Link>
-          )
+          <Button
+            aria-controls="account-controls-menu"
+            aria-haspopup="true"
+            onClick={clickMenu}
+          >
+            {user.battletag} <ArrowDropDown />
+          </Button>
+          <Menu
+            id="account-controls-menu"
+            keepMounted
+            anchorEl={this.state.anchorEl}
+            open={Boolean(this.state.anchorEl)}
+            onClose={closeMenu}
+            getContentAnchorEl={null}
+            anchorOrigin={{ vertical: "bottom", horizontal: "right" }}
+            transformOrigin={{ vertical: "top", horizontal: "right" }}
+          >
+            <MenuItem onClick={clickLogout}>
+              <Translate id="log_out" />
+            </MenuItem>
+          </Menu>
         </div>
       );
     } else {

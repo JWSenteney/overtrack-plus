@@ -1,6 +1,6 @@
 import axios from "axios";
 
-import { TEST_API, FETCH_USER } from "./types";
+import { TEST_API, FETCH_USER, FETCH_SHARE_KEYS } from "./types";
 
 const otApis = {
   v1: "https://api.overtrack.gg"
@@ -32,4 +32,12 @@ export const logout = () => async () => {
   if (token) {
     document.location.href = `${otApis.v1}/logout?token=${token}&next=${document.location.href}`;
   }
+};
+
+export const fetchShareKeys = () => async dispatch => {
+  const res = await axios.get(`${otApis.v1}/share_keys`, {
+    withCredentials: true
+  });
+
+  dispatch({ type: FETCH_SHARE_KEYS, payload: res.data });
 };

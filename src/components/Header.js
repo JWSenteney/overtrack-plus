@@ -120,8 +120,8 @@ Header.propTypes = {
 };
 
 Header = connect(
-  ({ user }) => {
-    return { user };
+  ({ account }) => {
+    return { user: account.user };
   },
   { logout }
 )(Header);

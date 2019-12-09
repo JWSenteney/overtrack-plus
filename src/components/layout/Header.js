@@ -15,8 +15,8 @@ import { ArrowDropDown } from "@material-ui/icons";
 import { Translate } from "react-localize-redux";
 import { connect } from "react-redux";
 
-import Logo from "./Logo";
-import { logout } from "../actions";
+import Logo from "../Logo";
+import { logout } from "../../actions";
 
 const styles = theme => ({
   root: { flexGrow: 1 },

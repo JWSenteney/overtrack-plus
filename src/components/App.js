@@ -6,7 +6,7 @@ import { CssBaseline } from "@material-ui/core";
 import { connect } from "react-redux";
 
 import { languages, translations, translationOptions } from "../translations";
-import Header from "./Header";
+import Layout from "./layout/Layout";
 import Landing from "./Landing";
 import { fetchUser } from "../actions";
 
@@ -39,12 +39,13 @@ class App extends Component {
     return (
       <div className="App">
         <CssBaseline />
-        <Header />
-        <Router>
-          <Switch>
-            <Route path="/" component={Landing} />
-          </Switch>
-        </Router>
+        <Layout>
+          <Router>
+            <Switch>
+              <Route path="/" component={Landing} />
+            </Switch>
+          </Router>
+        </Layout>
       </div>
     );
   };

@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Route, BrowserRouter as Router, Switch } from "react-router-dom";
+import { BrowserRouter as Router } from "react-router-dom";
 import PropTypes from "prop-types";
 import { withLocalize } from "react-localize-redux";
 import { CssBaseline } from "@material-ui/core";
@@ -7,7 +7,6 @@ import { connect } from "react-redux";
 
 import { languages, translations, translationOptions } from "../translations";
 import Layout from "./layout/Layout";
-import Landing from "./Landing";
 import { fetchUser } from "../actions";
 
 class App extends Component {
@@ -39,13 +38,9 @@ class App extends Component {
     return (
       <div className="App">
         <CssBaseline />
-        <Layout>
-          <Router>
-            <Switch>
-              <Route path="/" component={Landing} />
-            </Switch>
-          </Router>
-        </Layout>
+        <Router>
+          <Layout />
+        </Router>
       </div>
     );
   };

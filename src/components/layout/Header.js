@@ -4,49 +4,86 @@ import { withStyles } from "@material-ui/core/styles";
 import {
   AppBar,
   Button,
+  Hidden,
   Link,
   Menu,
   MenuItem,
   SvgIcon,
+  Tab,
+  Tabs,
   Toolbar,
   Typography
 } from "@material-ui/core";
 import { ArrowDropDown } from "@material-ui/icons";
 import { Translate } from "react-localize-redux";
 import { connect } from "react-redux";
+import { withRouter } from "react-router-dom";
 
 import Logo from "../Logo";
-import { logout } from "../../actions";
+import { logout, navigate } from "../../actions";
 
 const styles = theme => ({
-  root: { flexGrow: 1 },
+  toolbarLeft: {
+    display: "flex",
+    flexGrow: 1,
+    alignItems: "center"
+  },
   logo: {
     marginRight: theme.spacing(2)
   },
-  title: { flexGrow: 1 }
+  title: { marginRight: theme.spacing(4) },
+  topNav: {
+    "& button": {
+      minHeight: theme.mixins.toolbar["@media (min-width:600px)"].minHeight
+    }
+  }
 });
 
 class Header extends Component {
-  componentDidMount = () => {
-    this.setState({ anchorEl: null });
-  };
+  state = { anchorEl: null };
 
   render = () => {
     const { classes } = this.props;
     return (
-      <div className={classes.root}>
-        <AppBar position="static">
-          <Toolbar>
+      <AppBar position="static">
+        <Toolbar>
+          <div className={classes.toolbarLeft}>
             <SvgIcon className={classes.logo} fontSize="large">
               <Logo />
             </SvgIcon>
             <Typography variant="h6" className={classes.title}>
               <Translate id="overtrack_plus" />
             </Typography>
-            {this.renderAccountControls()}
-          </Toolbar>
-        </AppBar>
-      </div>
+            {this.renderNavTabs()}
+          </div>
+          {this.renderAccountControls()}
+        </Toolbar>
+      </AppBar>
+    );
+  };
+
+  renderNavTabs = () => {
+    const { classes, history, navItems } = this.props;
+
+    const clickTab = (event, newTab) => {
+      this.props.navigate(newTab);
+      history.push(newTab === 0 ? "/" : `/${navItems[newTab].id}`);
+    };
+
+    return (
+      <Hidden smDown>
+        <nav className={classes.topNav}>
+          <Translate>
+            {({ translate }) => (
+              <Tabs value={this.props.selectedNav} onChange={clickTab}>
+                {navItems.map(tab => (
+                  <Tab label={translate(`navigation.${tab.id}`)} key={tab.id} />
+                ))}
+              </Tabs>
+            )}
+          </Translate>
+        </nav>
+      </Hidden>
     );
   };
 
@@ -113,18 +150,26 @@ class Header extends Component {
 
 Header.propTypes = {
   classes: PropTypes.object,
+  history: PropTypes.object,
   logout: PropTypes.func,
+  navigate: PropTypes.func,
+  navItems: PropTypes.arrayOf(
+    PropTypes.shape({ id: PropTypes.string, icon: PropTypes.object })
+  ).isRequired,
+  selectedNav: PropTypes.number,
   user: PropTypes.shape({
     battletag: PropTypes.string
   })
 };
 
 Header = connect(
-  ({ account }) => {
-    return { user: account.user };
+  ({ account, state }) => {
+    return { user: account.user, selectedNav: state.selectedNav };
   },
-  { logout }
+  { logout, navigate }
 )(Header);
+
+Header = withRouter(Header);
 
 Header = withStyles(styles)(Header);
 

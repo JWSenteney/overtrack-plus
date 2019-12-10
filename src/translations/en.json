@@ -4,5 +4,9 @@
   "yes": "YES!",
   "no": "NO!",
   "login": "Login",
-  "log_out": "Log Out"
+  "log_out": "Log Out",
+  "navigation": {
+    "dashboard": "Dashboard",
+    "games": "Games"
+  }
 }

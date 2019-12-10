@@ -1,6 +1,6 @@
 import axios from "axios";
 
-import { TEST_API, FETCH_USER, FETCH_SHARE_KEYS } from "./types";
+import { TEST_API, FETCH_USER, FETCH_SHARE_KEYS, NAVIGATE } from "./types";
 
 const otApis = {
   v1: "https://api.overtrack.gg"
@@ -40,4 +40,8 @@ export const fetchShareKeys = () => async dispatch => {
   });
 
   dispatch({ type: FETCH_SHARE_KEYS, payload: res.data });
+};
+
+export const navigate = selectedNav => dispatch => {
+  dispatch({ type: NAVIGATE, payload: selectedNav });
 };

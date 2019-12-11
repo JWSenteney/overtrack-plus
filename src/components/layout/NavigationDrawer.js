@@ -18,7 +18,8 @@ import Logo from "../Logo";
 import { navigate, setDrawerOpen } from "../../actions";
 
 const styles = theme => ({
-  root: { width: 250 },
+  root: {},
+  drawerPaper: { width: 250 },
   toolbar: { justifyContent: "center" },
   logo: {
     marginRight: theme.spacing(2)
@@ -27,15 +28,15 @@ const styles = theme => ({
     marginBottom: theme.spacing(2)
   },
   tab: {
-    minHeight: 0,
-    "& .MuiTab-wrapper": {
-      flexDirection: "row",
-      justifyContent: "flex-start",
-      "& svg": {
-        marginBottom: 0,
-        marginLeft: theme.spacing(3),
-        marginRight: theme.spacing(2)
-      }
+    minHeight: 0
+  },
+  tabWrapper: {
+    flexDirection: "row",
+    justifyContent: "flex-start",
+    "& svg": {
+      marginBottom: "0 !important",
+      marginLeft: theme.spacing(3),
+      marginRight: theme.spacing(2)
     }
   }
 });
@@ -59,6 +60,7 @@ class NavigationDrawer extends Component {
         onClose={this.closeDrawer}
         onOpen={this.openDrawer}
         className={classes.root}
+        classes={{ paper: classes.drawerPaper }}
       >
         <Toolbar className={classes.toolbar}>
           <SvgIcon className={classes.logo} fontSize="large">
@@ -85,7 +87,7 @@ class NavigationDrawer extends Component {
     };
 
     return (
-      <nav className={classes.root}>
+      <nav>
         <Translate>
           {({ translate }) => (
             <Tabs
@@ -101,6 +103,7 @@ class NavigationDrawer extends Component {
                     key={id}
                     label={translate(`navigation.${id}`)}
                     icon={icon}
+                    classes={{ wrapper: classes.tabWrapper }}
                   />
                 );
               })}

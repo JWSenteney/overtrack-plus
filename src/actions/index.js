@@ -1,4 +1,5 @@
 import axios from "axios";
+import _ from "lodash";
 
 import { TEST_API, FETCH_USER, FETCH_SHARE_KEYS, NAVIGATE } from "./types";
 
@@ -44,4 +45,19 @@ export const fetchShareKeys = () => async dispatch => {
 
 export const navigate = selectedNav => dispatch => {
   dispatch({ type: NAVIGATE, payload: selectedNav });
+};
+
+export const initNav = (pathname, navItems) => dispatch => {
+  const tabName = _.chain(pathname)
+    .split("/")
+    .compact()
+    .first()
+    .value();
+
+  const tabIndex = _.chain(navItems)
+    .findIndex(({ id }) => id === tabName)
+    .clamp(0, navItems.length - 1)
+    .valueOf();
+
+  dispatch({ type: NAVIGATE, payload: tabIndex });
 };

@@ -5,6 +5,7 @@ import {
   AppBar,
   Button,
   Hidden,
+  IconButton,
   Link,
   Menu,
   MenuItem,
@@ -14,19 +15,22 @@ import {
   Toolbar,
   Typography
 } from "@material-ui/core";
-import { ArrowDropDown } from "@material-ui/icons";
+import { ArrowDropDown, Menu as MenuIcon } from "@material-ui/icons";
 import { Translate } from "react-localize-redux";
 import { connect } from "react-redux";
 import { withRouter } from "react-router-dom";
 
 import Logo from "../Logo";
-import { logout, navigate } from "../../actions";
+import { logout, navigate, setDrawerOpen } from "../../actions";
 
 const styles = theme => ({
   toolbarLeft: {
     display: "flex",
     flexGrow: 1,
     alignItems: "center"
+  },
+  menuButton: {
+    marginRight: theme.spacing(2)
   },
   logo: {
     marginRight: theme.spacing(2)
@@ -42,12 +46,24 @@ const styles = theme => ({
 class Header extends Component {
   state = { anchorEl: null };
 
+  openDrawer = () => {
+    this.props.setDrawerOpen(true);
+  };
+
   render = () => {
     const { classes } = this.props;
     return (
       <AppBar position="static">
         <Toolbar>
           <div className={classes.toolbarLeft}>
+            <Hidden mdUp>
+              <IconButton
+                onClick={this.openDrawer}
+                className={classes.menuButton}
+              >
+                <MenuIcon />
+              </IconButton>
+            </Hidden>
             <SvgIcon className={classes.logo} fontSize="large">
               <Logo />
             </SvgIcon>
@@ -63,10 +79,10 @@ class Header extends Component {
   };
 
   renderNavTabs = () => {
-    const { classes, history, navItems } = this.props;
+    const { classes, history, navigate, navItems, selectedNav } = this.props;
 
     const clickTab = (event, newTab) => {
-      this.props.navigate(newTab);
+      navigate(newTab);
       history.push(newTab === 0 ? "/" : `/${navItems[newTab].id}`);
     };
 
@@ -75,7 +91,7 @@ class Header extends Component {
         <nav className={classes.topNav}>
           <Translate>
             {({ translate }) => (
-              <Tabs value={this.props.selectedNav} onChange={clickTab}>
+              <Tabs value={selectedNav} onChange={clickTab}>
                 {navItems.map(tab => (
                   <Tab label={translate(`navigation.${tab.id}`)} key={tab.id} />
                 ))}
@@ -157,6 +173,7 @@ Header.propTypes = {
     PropTypes.shape({ id: PropTypes.string, icon: PropTypes.object })
   ).isRequired,
   selectedNav: PropTypes.number,
+  setDrawerOpen: PropTypes.func,
   user: PropTypes.shape({
     battletag: PropTypes.string
   })
@@ -166,7 +183,7 @@ Header = connect(
   ({ account, state }) => {
     return { user: account.user, selectedNav: state.selectedNav };
   },
-  { logout, navigate }
+  { logout, navigate, setDrawerOpen }
 )(Header);
 
 Header = withRouter(Header);

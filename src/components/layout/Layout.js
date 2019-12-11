@@ -7,6 +7,7 @@ import { connect } from "react-redux";
 import Header from "./Header";
 import Landing from "../Landing";
 import { initNav } from "../../actions";
+import NavigationDrawer from "./NavigationDrawer";
 
 const navItems = [
   { id: "dashboard", icon: <HomeIcon />, component: Landing, default: true },
@@ -23,6 +24,8 @@ class Layout extends Component {
     return (
       <div>
         <Header navItems={navItems} />
+
+        <NavigationDrawer navItems={navItems} />
 
         <Switch>
           {navItems.map(navItem => {

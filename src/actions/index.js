@@ -1,7 +1,13 @@
 import axios from "axios";
 import _ from "lodash";
 
-import { TEST_API, FETCH_USER, FETCH_SHARE_KEYS, NAVIGATE } from "./types";
+import {
+  TEST_API,
+  FETCH_USER,
+  FETCH_SHARE_KEYS,
+  NAVIGATE,
+  SET_DRAWER_OPEN
+} from "./types";
 
 const otApis = {
   v1: "https://api.overtrack.gg"
@@ -60,4 +66,8 @@ export const initNav = (pathname, navItems) => dispatch => {
     .valueOf();
 
   dispatch({ type: NAVIGATE, payload: tabIndex });
+};
+
+export const setDrawerOpen = isOpen => dispatch => {
+  dispatch({ type: SET_DRAWER_OPEN, payload: isOpen });
 };

@@ -7,7 +7,7 @@ import { connect } from "react-redux";
 
 import { languages, translations, translationOptions } from "../translations";
 import Layout from "./layout/Layout";
-import { fetchUser } from "../actions";
+import { fetchUser } from "../store/account";
 
 class App extends Component {
   constructor(props) {

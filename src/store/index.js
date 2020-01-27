@@ -1,8 +1,8 @@
 import { combineReducers } from "redux";
 
-import testReducer from "./testReducer";
-import accountReducer from "./accountReducer";
-import stateReducer from "./stateReducer";
+import testReducer from "./test";
+import accountReducer from "./account";
+import stateReducer from "./state";
 
 export default combineReducers({
   test: testReducer,

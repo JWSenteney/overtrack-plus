@@ -6,7 +6,7 @@ import { connect } from "react-redux";
 
 import Header from "./Header";
 import Landing from "../Landing";
-import { initNav } from "../../actions";
+import { initNav } from "../../store/state";
 import NavigationDrawer from "./NavigationDrawer";
 
 const navItems = [

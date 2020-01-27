@@ -15,7 +15,7 @@ import { connect } from "react-redux";
 import { withRouter } from "react-router-dom";
 
 import Logo from "../Logo";
-import { navigate, setDrawerOpen } from "../../actions";
+import { navigate, setDrawerOpen } from "../../store/state";
 
 const styles = theme => ({
   root: {},

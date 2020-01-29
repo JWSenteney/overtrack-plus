@@ -15,11 +15,6 @@ const navItems = [
 ];
 
 class Layout extends Component {
-  componentDidMount = () => {
-    const { initNav, history } = this.props;
-    initNav(history.location.pathname, navItems);
-  };
-
   render = () => {
     return (
       <div>
@@ -43,6 +38,11 @@ class Layout extends Component {
         </Switch>
       </div>
     );
+  };
+
+  componentDidMount = () => {
+    const { initNav, history } = this.props;
+    initNav(history.location.pathname, navItems);
   };
 }
 

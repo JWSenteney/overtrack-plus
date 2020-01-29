@@ -10,11 +10,26 @@ import Layout from "./layout/Layout";
 import { fetchUser } from "../store/account";
 
 class App extends Component {
+  render = () => {
+    return (
+      <div className="App">
+        <CssBaseline />
+        <Router>
+          <Layout />
+        </Router>
+      </div>
+    );
+  };
+
   constructor(props) {
     super(props);
 
     this.initTranslations();
   }
+
+  componentDidMount = () => {
+    this.props.fetchUser();
+  };
 
   initTranslations = () => {
     this.props.initialize({
@@ -28,21 +43,6 @@ class App extends Component {
         language.code
       );
     });
-  };
-
-  componentDidMount = () => {
-    this.props.fetchUser();
-  };
-
-  render = () => {
-    return (
-      <div className="App">
-        <CssBaseline />
-        <Router>
-          <Layout />
-        </Router>
-      </div>
-    );
   };
 }
 

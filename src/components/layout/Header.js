@@ -24,33 +24,7 @@ import Logo from "../Logo";
 import { logout } from "../../store/account";
 import { navigate, setDrawerOpen } from "../../store/state";
 
-const styles = theme => ({
-  toolbarLeft: {
-    display: "flex",
-    flexGrow: 1,
-    alignItems: "center"
-  },
-  menuButton: {
-    marginRight: theme.spacing(2)
-  },
-  logo: {
-    marginRight: theme.spacing(2)
-  },
-  title: { marginRight: theme.spacing(4) },
-  topNav: {
-    "& button": {
-      minHeight: theme.mixins.toolbar["@media (min-width:600px)"].minHeight
-    }
-  }
-});
-
 class Header extends Component {
-  state = { anchorEl: null };
-
-  openDrawer = () => {
-    this.props.setDrawerOpen(true);
-  };
-
   render = () => {
     const { classes } = this.props;
     return (
@@ -163,6 +137,12 @@ class Header extends Component {
       );
     }
   };
+
+  state = { anchorEl: null };
+
+  openDrawer = () => {
+    this.props.setDrawerOpen(true);
+  };
 }
 
 Header.propTypes = {
@@ -181,14 +161,36 @@ Header.propTypes = {
 };
 
 Header = connect(
-  ({ account, state }) => {
-    return { user: account.user, selectedNav: state.selectedNav };
-  },
+  ({ account, state }) => ({
+    user: account.user,
+    selectedNav: state.selectedNav
+  }),
   { logout, navigate, setDrawerOpen }
 )(Header);
 
 Header = withRouter(Header);
 
-Header = withStyles(styles)(Header);
+Header = withStyles(
+  theme => ({
+    toolbarLeft: {
+      display: "flex",
+      flexGrow: 1,
+      alignItems: "center"
+    },
+    menuButton: {
+      marginRight: theme.spacing(2)
+    },
+    logo: {
+      marginRight: theme.spacing(2)
+    },
+    title: { marginRight: theme.spacing(4) },
+    topNav: {
+      "& button": {
+        minHeight: theme.mixins.toolbar["@media (min-width:600px)"].minHeight
+      }
+    }
+  }),
+  { name: "Header" }
+)(Header);
 
 export default Header;

@@ -7,18 +7,7 @@ import { withStyles } from "@material-ui/core/styles";
 
 import { testApi } from "../store/test";
 
-const styles = theme => ({
-  root: { marginTop: theme.spacing(2) },
-  apiCheck: {
-    textAlign: "center"
-  }
-});
-
 class Landing extends Component {
-  componentDidMount = () => {
-    this.props.testApi();
-  };
-
   render = () => {
     const { classes, test } = this.props;
     return (
@@ -29,6 +18,10 @@ class Landing extends Component {
       </Container>
     );
   };
+
+  componentDidMount = () => {
+    this.props.testApi();
+  };
 }
 
 Landing.propTypes = {
@@ -37,13 +30,16 @@ Landing.propTypes = {
   testApi: PropTypes.func.isRequired
 };
 
-Landing = connect(
-  ({ test }) => {
-    return { test };
-  },
-  { testApi }
-)(Landing);
+Landing = connect(({ test }) => ({ test }), { testApi })(Landing);
 
-Landing = withStyles(styles)(Landing);
+Landing = withStyles(
+  theme => ({
+    root: { marginTop: theme.spacing(2) },
+    apiCheck: {
+      textAlign: "center"
+    }
+  }),
+  { name: "Landing" }
+)(Landing);
 
 export default Landing;

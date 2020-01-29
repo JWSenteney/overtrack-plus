@@ -17,39 +17,7 @@ import { withRouter } from "react-router-dom";
 import Logo from "../Logo";
 import { navigate, setDrawerOpen } from "../../store/state";
 
-const styles = theme => ({
-  root: {},
-  drawerPaper: { width: 250 },
-  toolbar: { justifyContent: "center" },
-  logo: {
-    marginRight: theme.spacing(2)
-  },
-  divider: {
-    marginBottom: theme.spacing(2)
-  },
-  tab: {
-    minHeight: 0
-  },
-  tabWrapper: {
-    flexDirection: "row",
-    justifyContent: "flex-start",
-    "& svg": {
-      marginBottom: "0 !important",
-      marginLeft: theme.spacing(3),
-      marginRight: theme.spacing(2)
-    }
-  }
-});
-
 class NavigationDrawer extends Component {
-  openDrawer = () => {
-    this.props.setDrawerOpen(true);
-  };
-
-  closeDrawer = () => {
-    this.props.setDrawerOpen(false);
-  };
-
   render = () => {
     const { classes, drawerOpen } = this.props;
 
@@ -113,6 +81,14 @@ class NavigationDrawer extends Component {
       </nav>
     );
   };
+
+  closeDrawer = () => {
+    this.props.setDrawerOpen(false);
+  };
+
+  openDrawer = () => {
+    this.props.setDrawerOpen(true);
+  };
 }
 
 NavigationDrawer.propTypes = {
@@ -128,16 +104,40 @@ NavigationDrawer.propTypes = {
 };
 
 NavigationDrawer = connect(
-  ({ state }) => {
-    return { drawerOpen: state.drawerOpen, selectedNav: state.selectedNav };
-  },
+  ({ state }) => ({
+    drawerOpen: state.drawerOpen,
+    selectedNav: state.selectedNav
+  }),
   { navigate, setDrawerOpen }
 )(NavigationDrawer);
 
 NavigationDrawer = withRouter(NavigationDrawer);
 
-NavigationDrawer = withStyles(styles, { name: "NavigationDrawer" })(
-  NavigationDrawer
-);
+NavigationDrawer = withStyles(
+  theme => ({
+    root: {},
+    drawerPaper: { width: 250 },
+    toolbar: { justifyContent: "center" },
+    logo: {
+      marginRight: theme.spacing(2)
+    },
+    divider: {
+      marginBottom: theme.spacing(2)
+    },
+    tab: {
+      minHeight: 0
+    },
+    tabWrapper: {
+      flexDirection: "row",
+      justifyContent: "flex-start",
+      "& svg": {
+        marginBottom: "0 !important",
+        marginLeft: theme.spacing(3),
+        marginRight: theme.spacing(2)
+      }
+    }
+  }),
+  { name: "NavigationDrawer" }
+)(NavigationDrawer);
 
 export default NavigationDrawer;

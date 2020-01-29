@@ -3,27 +3,8 @@ import PropTypes from "prop-types";
 import { withStyles } from "@material-ui/core/styles";
 import { grey, orange } from "@material-ui/core/colors";
 
-const styles = () => ({
-  root: {
-    "& path": {
-      fillOpacity: 1,
-      stroke: "black",
-      strokeWidth: 4,
-      strokeMiterlimit: 4,
-      strokeOpacity: 1,
-      strokeDasharray: "none"
-    }
-  },
-  t: {
-    fill: orange["500"]
-  },
-  o: {
-    fill: grey["500"]
-  }
-});
-
 class Logo extends Component {
-  render() {
+  render = () => {
     const { classes } = this.props;
     return (
       <svg
@@ -42,13 +23,33 @@ class Logo extends Component {
         />
       </svg>
     );
-  }
+  };
 }
 
 Logo.propTypes = {
   classes: PropTypes.object
 };
 
-Logo = withStyles(styles)(Logo);
+Logo = withStyles(
+  () => ({
+    root: {
+      "& path": {
+        fillOpacity: 1,
+        stroke: "black",
+        strokeWidth: 4,
+        strokeMiterlimit: 4,
+        strokeOpacity: 1,
+        strokeDasharray: "none"
+      }
+    },
+    t: {
+      fill: orange["500"]
+    },
+    o: {
+      fill: grey["500"]
+    }
+  }),
+  { name: "Logo" }
+)(Logo);
 
 export default Logo;

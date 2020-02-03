@@ -8,10 +8,11 @@ import Header from "./Header";
 import Landing from "../Landing";
 import { initNav } from "../../store/state";
 import NavigationDrawer from "./NavigationDrawer";
+import GamesList from "../gamesList/GamesList";
 
 const navItems = [
   { id: "dashboard", icon: <HomeIcon />, component: Landing, default: true },
-  { id: "games", icon: <ListIcon />, component: Landing }
+  { id: "games", icon: <ListIcon />, component: GamesList }
 ];
 
 class Layout extends Component {

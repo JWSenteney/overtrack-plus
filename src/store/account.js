@@ -1,16 +1,14 @@
 import axios from "axios";
 
+import { LOGOUT, SHARE_KEYS, USER } from "./endpoints";
+
 // ACTION TYPES
 export const FETCH_SHARE_KEYS = "FETCH_SHARE_KEYS";
 export const FETCH_USER = "FETCH_USER";
 
 // ACTIONS
-const otApis = {
-  v1: "https://api.overtrack.gg"
-};
-
 export const fetchShareKeys = () => async dispatch => {
-  const res = await axios.get(`${otApis.v1}/share_keys`, {
+  const res = await axios.get(SHARE_KEYS, {
     withCredentials: true
   });
 
@@ -19,7 +17,7 @@ export const fetchShareKeys = () => async dispatch => {
 
 export const fetchUser = () => async dispatch => {
   try {
-    const res = await axios.get(`${otApis.v1}/user`, {
+    const res = await axios.get(USER, {
       withCredentials: true
     });
     dispatch({ type: FETCH_USER, payload: res.data });
@@ -29,13 +27,13 @@ export const fetchUser = () => async dispatch => {
 };
 
 export const logout = () => async () => {
-  const res = await axios.get(`${otApis.v1}/logout`, {
+  const res = await axios.get(LOGOUT, {
     withCredentials: true
   });
 
   const { token } = res.data;
   if (token) {
-    document.location.href = `${otApis.v1}/logout?token=${token}&next=${document.location.href}`;
+    document.location.href = `${LOGOUT}?token=${token}&next=${document.location.href}`;
   }
 };
 

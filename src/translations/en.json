@@ -8,5 +8,14 @@
   "navigation": {
     "dashboard": "Dashboard",
     "games": "Games"
+  },
+  "game_card": {
+    "date_format": "ddd M/D/YY H:mm",
+    "DRAW": "DRAW",
+    "duration": "${duration} min",
+    "LOSS": "LOSS",
+    "title": "${blue_score}-${red_score} ${result}",
+    "UNKNOWN": "UNKN",
+    "WIN": "WIN"
   }
 }

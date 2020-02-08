@@ -1,7 +1,8 @@
 import _ from "lodash";
 
+import { getFriendlyHeroName } from "./nameMapService";
+
 export const processGames = games => {
-  console.log("processing games");
   return _.map(games, game => {
     let processedGame = _.omit(game, [
       "custom_game",
@@ -17,7 +18,9 @@ export const processGames = games => {
     processedGame.heroes_played = _.chain(game.heroes_played)
       .sortBy(hero => _.takeRight(hero))
       .reverse()
-      .map(hero => _.dropRight(hero))
+      .map(hero => {
+        return getFriendlyHeroName(_.dropRight(hero));
+      })
       .flatten()
       .value();
 

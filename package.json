@@ -7,8 +7,8 @@
   "license": "MIT",
   "scripts": {
     "setup-idea": "sh initialize.sh",
-    "electron-dev": "export BROWSER=none && concurrently \"yarn --cwd server start\" \"yarn --cwd web start\" \"yarn --cwd desktop wait-react\"",
-    "web-dev": "concurrently \"yarn --cwd server start\" \"yarn --cwd web start\""
+    "electron-dev": "export BROWSER=none && concurrently \"yarn --cwd web start\" \"yarn --cwd desktop wait-react\"",
+    "web-dev": "yarn --cwd web start"
   },
   "devDependencies": {
     "concurrently": "^5.0.0",

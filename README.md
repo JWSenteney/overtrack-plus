@@ -1,3 +1,5 @@
 # overtrack-plus
 
-`git clone git@github.com:JWSenteney/overtrack-plus.git && yarn --cwd overtrack-plus install-project`
+**Setup project:** `yarn install-project`
+
+**Start web server:** `yarn web-dev`

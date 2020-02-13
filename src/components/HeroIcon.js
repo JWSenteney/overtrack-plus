@@ -4,20 +4,24 @@ import { withStyles, withTheme } from "@material-ui/core/styles";
 import { Paper } from "@material-ui/core";
 
 const HeroIcon = ({ classes, hero, theme }) => {
-  return (
-    <div>
-      <Paper
-        className={classes.background}
-        style={{ backgroundColor: theme.hero[hero] }}
-      />
+  if (hero) {
+    return (
+      <div>
+        <Paper
+          className={classes.background}
+          style={{ backgroundColor: theme.hero[hero] }}
+        />
 
-      <img
-        src={require(`../assets/icons/heroes/${hero}.svg`)}
-        alt={hero}
-        className={classes.icon}
-      />
-    </div>
-  );
+        <img
+          src={require(`../assets/icons/heroes/${hero}.svg`)}
+          alt={hero}
+          className={classes.icon}
+        />
+      </div>
+    );
+  } else {
+    return null;
+  }
 };
 
 HeroIcon.propTypes = {

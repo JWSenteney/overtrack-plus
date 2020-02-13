@@ -1,1 +1,0 @@
-yarn --cwd desktop install;

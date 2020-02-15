@@ -104,6 +104,7 @@ class Header extends Component {
           <Button
             aria-controls="account-controls-menu"
             aria-haspopup="true"
+            color="inherit"
             onClick={clickMenu}
           >
             {user.battletag} <ArrowDropDown />
@@ -128,6 +129,7 @@ class Header extends Component {
       return (
         <div>
           <Button
+            color="inherit"
             component={Link}
             href={`https://api.overtrack.gg/authenticate?next=${document.location.href}`}
           >

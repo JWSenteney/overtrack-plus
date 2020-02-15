@@ -58,11 +58,8 @@ class GameCard extends Component {
                     duration: moment.duration(duration, "s").minutes()
                   })}
                 </Typography>
-                <Chip
-                  label={this.renderSRChangeLabel()}
-                  variant="outlined"
-                  className={classes.srChange}
-                />
+
+                {this.renderSRChip()}
               </CardContent>
             </div>
           </Card>
@@ -100,10 +97,28 @@ class GameCard extends Component {
     );
   };
 
+  renderSRChip = () => {
+    const { classes, game } = this.props;
+    const { game_type } = game;
+
+    if (game_type === "competitive") {
+      return (
+        <Chip
+          label={this.renderSRChangeLabel()}
+          variant="outlined"
+          className={classes.srChange}
+        />
+      );
+    } else return null;
+  };
+
   renderSRChangeLabel = () => {
     const { classes, game } = this.props;
     const { end_sr, start_sr } = game;
-    const change = end_sr - start_sr;
+    const change = end_sr && start_sr ? end_sr - start_sr : null;
+    const changeClass =
+      change !== null && change >= 0 ? classes.plusSr : classes.minusSr;
+    const changeString = changeClass === classes.plusSr ? `+${change}` : change;
 
     return (
       <Grid
@@ -113,18 +128,17 @@ class GameCard extends Component {
         className={classes.srChangeLabel}
       >
         <Grid item>
-          <Typography variant="body2">{start_sr}</Typography>
+          <Typography variant="body2">{start_sr || "?"}</Typography>
         </Grid>
         <Grid item>
           <ArrowRightAlt />
         </Grid>
         <Grid item>
-          <Typography variant="body2">{end_sr}</Typography>
+          <Typography variant="body2">{end_sr || "?"}</Typography>
         </Grid>
-        <Grid item className={change > 0 ? classes.plusSr : classes.minusSr}>
+        <Grid item className={changeClass}>
           <Typography variant="body2">
-            ({change >= 0 ? "+" : ""}
-            {change})
+            ({changeString !== null ? changeString : "?"})
           </Typography>
         </Grid>
       </Grid>

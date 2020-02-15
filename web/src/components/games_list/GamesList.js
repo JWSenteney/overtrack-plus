@@ -13,7 +13,7 @@ class GamesList extends Component {
     return (
       <Grid container spacing={2}>
         {gameTable.map(game => (
-          <Grid item md={4} sm={6} xs={12} key={game.key}>
+          <Grid item lg={4} md={6} sm={12} key={game.key}>
             <GameCard game={game} />
           </Grid>
         ))}
